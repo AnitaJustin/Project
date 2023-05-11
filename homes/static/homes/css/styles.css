@@ -1,0 +1,24 @@
+button {
+         background-color: aquamarine;
+        border: 2px solid black;
+        color: black;
+        padding: 32px 16px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 20%;
+        cursor: pointer;
+}
+
+button:hover {
+        background-color: green;
+        border: 2px solid black;
+        color: black;
+        padding: 32px 16px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 20%;
+}
