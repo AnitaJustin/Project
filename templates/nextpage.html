@@ -4,22 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>next_page</title>
-    {% load static %}
-    <link rel="stylesheet"
-    href="{% static 'homes/css/styles.css' %}">
+    <title>Document</title>
 </head>
 <body>
-    {% for i in categories %}
-    <button name="{{i.title}}" onclick="navigateToPage('{{i.title}}')">{{i.title}}</button>
-
- <script>
-function navigateToPage(category) {
-  window.location.href = "{% url 'levels' %}?category=" + encodeURIComponent(category);
-}
-</script> 
-<br><br><br>
+    <h1>nextpage</h1>
+    {% for each in category %}
+    <button name="{{each.title}}" onclick="navigateToPage('{{each.title}}')">{{each.title}}</button><br><br>
     {% endfor %}
-    <center><h1>NEXTPAGE</h1></center>
+    <script>
+        function navigateToPage(category) {
+            window.location.href="/levels/?category=" + encodeURIComponent(category);
+
+        }
+    </script>
 </body>
 </html>

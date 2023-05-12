@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Question
+    <h1>{{category}}</h1>
+    <h2>{{level}}</h2>
+    <h3>
+    {{ques}}</h3>
+    {% for i in answers %}
+    <button name="{{i.text}}" onclick="checkAnswer('{{i}}')">{{i.text}}</button><br><br>
+    {% endfor %}
+    
+    <script>
+        function checkAnswer(answer) {
+            // if (answer.is_correct) {
+            //     var button = document.getElementsByName(answer.text)[0];
+            //     button.style.backgroundColor = "green";
+            // } else {
+            //     var button = document.getElementsByName(answer.text)[0];
+            //     button.style.backgroundColor = "red";
+            // }
+           
+        var number =parseInt('{{num}}') + 1;
+        // document.querySelector("num").textContent = currentValue;
+
+        window.location.href = "/question/?num=" + encodeURIComponent(number) + "&category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}');
+        location.reload();
+        }
+    </script>
+
+
+</body>
+</html>

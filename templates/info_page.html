@@ -4,41 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>info</title>
 </head>
 <body>
-    <center>
-    <h1>{{category}}</h1>
-    
-    <h2>{{level}}</h2>
-    <h3><u>Manukkuttan's Info</u></h3>
-    {% if level == "level 1" %}
-        <h4><p>No of questions : 10<br><br>
-            Time : 3 minutes<br><br>
-            No of correct answers to unlock next level : 6
-        </h4>
-    {% elif level == "level 2" %}
-        <h4>No of questions : 10<br><br>
-            Time : 2.5 minutes<br><br>
-            No of correct answers to unlock next level : 7
-        </h4>
-    {% else %}
-        <h4>No of questions : 10<br><br>
-            Time : 2 minutes<br><br>
-            No of correct answers to unlock next level : 8
-        </p>
-        </h4>
-    </center>
-
-    {% endif%}
-    <center>
-        <button name="startquiz" onclick="navigateToPage()">Start Quiz</button>
-    </center>
+    <button onclick="back()">Back</button>
     <script>
-        function navigateToPage(){
-            window.location.href="/questions/?level=" + encodeURIComponent('{{level}}') + "&category=" + encodeURIComponent('{{category}}') + "&num=" +encodeURIComponent('0');
-    }
-        
+        function back() {
+            window.location.href="/levels";
+        }
     </script>
+    <center><h1>{{category}}</h1>
+    <h2>{{level}}</h2>
+    <h6><h1><u>ManuKuttan's info</u></h1>
+        {% if level == "level 1" %}
+        <h4>No of questions:10<br><br>
+        timer:3 minutes<br><br>
+        Min No Of Correct Answers to unlock next level:6</h4>
+        {% elif level == 'level 2' %}
+        <h4>No of questions:10<br><br>
+        timer:2.5 minutes<br><br>
+        Min No Of Correct Answers to unlock next level:7</h4>
+        {% else %}
+        <h4>No of questions:10<br><br>
+        timer:2 minutes<br><br>
+        Min No Of Correct Answers to unlock next level:8</h4>
+        {% endif %}
+        <button onclick="navigateToPage()">Start Quiz</button>
+</center>
+<script>
+    function navigateToPage(){
+        window.location.href= "/question/?level=" + encodeURIComponent('{{level}}') + "&category=" +encodeURIComponent('{{category}}') + "&num="+encodeURIComponent(0);
+    }
+</script>
 </body>
 </html>

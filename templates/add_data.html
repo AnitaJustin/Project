@@ -7,14 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>{{category}}</h1>
-    <h2>Level-{{level}}</h2>
-    
-    {{question}}<br><br>
-
-    {% for i in answer %}
-    <button onclick="">
-    {{i.answer}} </button><br><br> 
-    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        {{ category_form.as_p }}
+        {{ level_form.as_p }}
+        {{ question_form.as_p }}
+        {{ answer_form.as_p }}
+        <input type="submit" value="Add data">
+      </form>
 </body>
 </html>
