@@ -22,21 +22,38 @@ def info_page(request):
 def question(request):
     level = request.GET.get('level')
     category=request.GET.get('category')
-    num=request.GET.get('num')
-    ques=returnquestion(category,level,num)
-    answers=returnanswer(ques)
+    num=int(request.GET.get('num'))
+    score=request.GET.get('score')
+   
+    length = returnnumquestions(category, level, num)
 
-    return render(request,'question.html',{'level':level,'num':num,'category':category,'ques':ques,'answers':answers})
-
-def returnquestion(category,level,num):
+    if(num>=length):
+        return render(request,'result.html',{'score':score,'category':category,'level':level})
+    else:
+        ques = returnquestion(category,level,num)
+        answers,correct_answer=returnanswer(ques)
+        return render(request,'question.html',{'level':level,'num':num,'category':category,'ques':ques,'answers':answers,'correct_answer':correct_answer,'score':score})
+   
+        
+    
+def returnquestionset(category,level,num):
     cat=Category.objects.filter(title=category)[0]
     lev=level.split()[-1]
     lvl=Level.objects.filter(category=cat,level=lev)[0]
     question=Question.objects.filter(level=lvl)
-    qn=question[0]
-    return(qn)
+    return(question)
+
+def returnquestion(category, level, num):
+    question = returnquestionset(category, level, num)
+    return question[num]
+
+def returnnumquestions(category, level, num):
+    question = returnquestionset(category, level, num)
+    return len(question)
+
 def returnanswer(qn):
     ans=Answer.objects.filter(question=qn)
-    return(ans)
+    correct_answer=Answer.objects.filter(question=qn,is_correct="True")[0].id
+    return(ans,correct_answer)
 
 

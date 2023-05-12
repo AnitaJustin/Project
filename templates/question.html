@@ -13,25 +13,34 @@
     <h3>
     {{ques}}</h3>
     {% for i in answers %}
-    <button name="{{i.text}}" onclick="checkAnswer('{{i}}')">{{i.text}}</button><br><br>
+    <button id="{{i.id}}" onclick="checkAnswer('{{i.is_correct}}','{{i.id}}','{{correct_answer}}')">{{i.text}}</button><br><br>
     {% endfor %}
     
     <script>
-        function checkAnswer(answer) {
-            // if (answer.is_correct) {
-            //     var button = document.getElementsByName(answer.text)[0];
-            //     button.style.backgroundColor = "green";
-            // } else {
-            //     var button = document.getElementsByName(answer.text)[0];
-            //     button.style.backgroundColor = "red";
-            // }
+        function checkAnswer(answer,id,correct_answer) {
+            var buttons=document.querySelectorAll('button');
+            for (var i = 0; i < buttons.length; i++)
+                buttons[i].disabled=true;
+            var button = document.getElementById(correct_answer);
+                button.style.backgroundColor = "green";
+            if (answer == "True") {
+                
+                var scr=parseInt('{{score}}')+1;
+            
+            } else {
+                
+                var button = document.getElementById(id);
+                button.style.backgroundColor = "red";
+                var scr=parseInt('{{score}}');
+            }
            
         var number =parseInt('{{num}}') + 1;
-        // document.querySelector("num").textContent = currentValue;
-
-        window.location.href = "/question/?num=" + encodeURIComponent(number) + "&category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}');
-        location.reload();
-        }
+        setTimeout(function(){
+            window.location.href = "/question/?num=" + encodeURIComponent(number) + "&category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent(scr);
+            
+        }, 500);
+        
+    }
     </script>
 
 

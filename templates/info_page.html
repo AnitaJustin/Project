@@ -10,7 +10,7 @@
     <button onclick="back()">Back</button>
     <script>
         function back() {
-            window.location.href="/levels";
+            window.location.href="/levels?category=" +encodeURIComponent('{{category}}');
         }
     </script>
     <center><h1>{{category}}</h1>
@@ -33,7 +33,7 @@
 </center>
 <script>
     function navigateToPage(){
-        window.location.href= "/question/?level=" + encodeURIComponent('{{level}}') + "&category=" +encodeURIComponent('{{category}}') + "&num="+encodeURIComponent(0);
+        window.location.href= "/question/?level=" + encodeURIComponent('{{level}}') + "&category=" +encodeURIComponent('{{category}}') + "&num="+encodeURIComponent(0) + "&score="+encodeURIComponent(0);
     }
 </script>
 </body>
