@@ -8,8 +8,13 @@
 </head>
 <body>
     <center>
+        {% if score >= min_correct %}
         <h1>Congratz</h1>
         <h2>{{score}}</h2></center>
+        {% else %}
+        <h1>OOPS Sorry</h1>
+        <h2>{{score}}</h2>
+        {% endif %}
         <button onclick="backpage()"> back </button>
         <button onclick="nextlevel()"> Next level </button>
 
