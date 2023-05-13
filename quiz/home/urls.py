@@ -7,4 +7,5 @@ urlpatterns=[
     path('levels/',views.levels,name="levels"),
     path('info_page/',views.info_page,name="info_page"),
     path('question/',views.question,name="question"),
+    path('result/',views.result,name="result"),
 ]

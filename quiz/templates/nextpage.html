@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>nextpage</h1>
+    <h1>Categories</h1>
     {% for each in category %}
     <button name="{{each.title}}" onclick="navigateToPage('{{each.title}}')">{{each.title}}</button><br><br>
     {% endfor %}
