@@ -14,7 +14,15 @@
     <script>
 
     $(function () {
-        var duration = 6; // 6 seconds
+        if('{{leve}}'=="level 1"){
+            var duration=60;
+        }
+        else if('{{level}}'=="level 2"){
+            var duration=50;
+        }
+        else{
+            var duration=40;
+        }
         startTimer(duration);
     });
     
