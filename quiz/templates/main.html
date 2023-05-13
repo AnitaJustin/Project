@@ -25,12 +25,13 @@
             //checking if the timer gets to zero
             timer = duration;
             // submit the level and move on to the next one
-            window.location.href="/result?score="+encodeURIComponent('{{score}}')
+            window.location.href="/result?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent('{{score}}');
         }
     }, 1000);
 }
 </script>
 {% block content%}
+
 {% endblock %}
    
 </body>
