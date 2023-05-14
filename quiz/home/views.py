@@ -25,6 +25,7 @@ def question(request):
     num=int(request.GET.get('num'))
     score=request.GET.get('score')
     min_correct=request.GET.get('min_correct')
+    duration=request.GET.get('duration')
     length = returnnumquestions(category, level, num)
 
     if(num>=length):
@@ -32,7 +33,7 @@ def question(request):
     else:
         ques = returnquestion(category,level,num)
         answers,correct_answer=returnanswer(ques)
-        return render(request,'question.html',{'level':level,'num':num,'category':category,'ques':ques,'answers':answers,'correct_answer':correct_answer,'score':score,'min_correct':min_correct})
+        return render(request,'question.html',{'level':level,'num':num,'category':category,'ques':ques,'answers':answers,'correct_answer':correct_answer,'score':score,'min_correct':min_correct,'duration':duration})
 def result(request):
     level = request.GET.get('level')
     category=request.GET.get('category')

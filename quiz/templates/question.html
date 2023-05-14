@@ -1,15 +1,15 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body> -->
-    {% extends 'main.html' %}
+<body>
 
-    {% block content %}
+    <center><h1>Quiz</h1></center>
     Question
     <h1>{{category}}</h1>
     <h2>{{level}}</h2>
@@ -18,8 +18,24 @@
     {% for i in answers %}
     <button id="{{i.id}}" onclick="checkAnswer('{{i.is_correct}}','{{i.id}}','{{correct_answer}}')">{{i.text}}</button><br><br>
     {% endfor %}
-    
     <script>
+        var dur;
+        $(function () {
+            startTimer(parseInt('{{duration}}'));
+        });
+        function startTimer(duration) {
+            var timer = duration;
+            setInterval(function () {
+            if (--timer < 0) {
+            //checking if the timer gets to zero
+            timer = duration;
+            // submit the level and move on to the next one
+            window.location.href="/result?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent('{{score}}');
+            }
+            dur=timer;
+            // pass the current time to the next qn page
+            }, 1000);
+        }
         function checkAnswer(answer,id,correct_answer) {
             var buttons=document.querySelectorAll('button');
             for (var i = 0; i < buttons.length; i++)
@@ -37,15 +53,14 @@
                 var scr=parseInt('{{score}}');
             }
            
-        var number =parseInt('{{num}}') + 1;
-        setTimeout(function(){
-            window.location.href = "/question/?num=" + encodeURIComponent(number) + "&category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent(scr);
+            var number =parseInt('{{num}}') + 1;
+            setTimeout(function(){
+                window.location.href = "/question/?num=" + encodeURIComponent(number) + "&category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent(scr)+"&duration=" +encodeURIComponent(dur);
             
-        }, 500);
-        
-    }
+            }, 500);
+        }
+       
     </script>
-{% endblock %}
 
-<!-- </body>
-</html> -->
+</body>
+</html> 

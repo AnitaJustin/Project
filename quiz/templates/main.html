@@ -20,16 +20,7 @@
     <script>
 
     $(function () {
-        if('{{leve}}'=="level 1"){
-            var duration=60;
-        }
-        else if('{{level}}'=="level 2"){
-            var duration=50;
-        }
-        else{
-            var duration=40;
-        }
-        startTimer(duration);
+        startTimer('{{duration}}');
     });
     
        function startTimer(duration) {
@@ -41,6 +32,8 @@
             // submit the level and move on to the next one
             window.location.href="/result?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent('{{score}}');
         }
+        duration=timer;
+        console.log(duration)
     }, 1000);
 }
 </script>

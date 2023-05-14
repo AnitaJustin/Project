@@ -15,13 +15,14 @@
     </script>
     <center><h1>{{category}}</h1>
     <h2>{{level}}</h2>
-    <h6><h1><u>ManuKuttan's info</u></h1>
+    <h1><u>ManuKuttan's info</u></h1>
         {% if level == "level 1" %}
         <h4>No of questions:10<br><br>
         timer:60 seconds<br><br>
         Min No Of Correct Answers to unlock next level:6</h4>
         <script>
             var min_correct=6;
+            var duration=60;
         </script>
         {% elif level == 'level 2' %}
         <h4>No of questions:10<br><br>
@@ -29,20 +30,23 @@
         Min No Of Correct Answers to unlock next level:7</h4>
         <script>
             var min_correct=7;
+            var duration=50;
         </script>
         {% else %}
         <h4>No of questions:10<br><br>
         timer:40 seconds<br><br>
-        Min No Of Correct Answers to unlock next level:8</h4>
+        Min No Of Correct Answers to unlock next level:8</h4></center>
         <script>
             var min_correct=8;
+            var duration=40;
         </script>
         {% endif %}
-        <button onclick="navigateToPage()">Start Quiz</button>
-</center>
+        <center>
+        <button onclick="navigateToPage()">Start Quiz</button></center>
+
 <script>
     function navigateToPage(){
-        window.location.href= "/question/?level=" + encodeURIComponent('{{level}}') + "&category=" +encodeURIComponent('{{category}}') + "&num="+encodeURIComponent(0) + "&score="+encodeURIComponent(0) + "&min_correct=" +encodeURIComponent(min_correct);
+        window.location.href= "/question/?level=" + encodeURIComponent('{{level}}') + "&category=" +encodeURIComponent('{{category}}') + "&num="+encodeURIComponent(0) + "&score="+encodeURIComponent(0) + "&min_correct=" +encodeURIComponent(min_correct) + "&duration=" +encodeURIComponent(duration);
     }
 </script>
 </body>
