@@ -5,16 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <center>
     <h1>{{category}}</h1>
-    <h2>Level-{{level}}</h2>
+    <h2>{{level}}</h2>
+    <script>
+        var q = parseInt('{{num}}')+1;
+    </script>
     
-    {{question}}<br><br>
+    
+    <h3><script>document.write(q)</script>.&nbsp;&nbsp;{{question}}</h3><br><br>
 
     {% for i in answer %}
-    <button onclick="">
+    <button id="{{i.id}}" onclick="checkAnswer('{{i.is_correct}}', '{{i.id}}', '{{correctAnswer}}')">
     {{i.answer}} </button><br><br> 
     {% endfor %}
+    </center>
+
+    <script>
+        var dur;
+        $(
+            startTimer(parseInt('{{duration}}'))
+            );
+        function startTimer(duration){
+            
+            setInterval(function(){
+            if(--duration < 0){
+                console.log("timer expired")
+                window.location.href="/result/?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}') +"&score=" + encodeURIComponent('{{score}}') + "&min_correct=" +encodeURIComponent('{{min_correct}}');
+            }
+            console.log(duration);
+            dur=duration;
+            },1000);
+        }
+        function checkAnswer(is_correct, id, correctAnswer){
+            var button = document.querySelectorAll('button');
+            for(var i=0;i<button.length;i++)
+                button[i].disabled=true;
+
+            var button = document.getElementById(correctAnswer);
+            button.style.backgroundColor = "green";
+
+            if(is_correct=="True"){
+                var scr = parseInt('{{score}}') +1;
+            }
+            else{
+                var button = document.getElementById(id);
+                button.style.backgroundColor = "red";
+                var scr = parseInt('{{score}}');
+            }
+            var num = parseInt('{{num}}')+1;
+            
+            setTimeout(function() {
+                window.location.href="/questions/?level=" + encodeURIComponent('{{level}}') + "&category=" + encodeURIComponent('{{category}}') + "&num=" +encodeURIComponent(num) + "&score=" +encodeURIComponent(scr) + "&min_correct=" + encodeURIComponent('{{min_correct}}') + "&duration=" + encodeURIComponent(dur);
+            },500);
+        }
+    </script>
 </body>
 </html>

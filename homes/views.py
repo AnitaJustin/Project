@@ -21,19 +21,39 @@ def info_page(request):
 
 def questions(request):
     category=request.GET.get('category')
-    level=request.GET.get('level').split()[-1]
+    level=request.GET.get('level')
     num=request.GET.get('num')
-    print(category, level, num)
-    question=returnquestion(category,level,num)
-    answer=returnanswer(question)
-    
-    return render(request,'questions.html',{'level':level,'category':category,'question':question,'answer':answer})
+    scr=request.GET.get('score')
+    min_correct=request.GET.get('min_correct')
+    length=returnquestionlength(category,level)
+    if(length>=int(num)+1):
+        question=returnquestion(category,level,num)
+        answer, correctAnswer=returnanswer(question)
+        return render(request,'questions.html',{'level':level, 'num':num, 'category':category,'question':question,'answer':answer, 'correctAnswer': correctAnswer, 'score':scr, 'min_correct':min_correct})
+    else:
+        return render(request,'result.html',{'level':level, 'num':num, 'category':category, 'score':scr,'min_correct':min_correct})
 
 def returnquestion(category,level,num):
+
     c=Category.objects.filter(title=category)[0]
-    d=Levels.objects.filter(category=c,level=level)[0]
+    d=Levels.objects.filter(category=c,level=level.split()[-1])[0]
     qn=Questions.objects.filter(level=d)[int(num)]
     return(qn)
+
+def returnquestionlength(category,level):
+    c=Category.objects.filter(title=category)[0]
+    d=Levels.objects.filter(category=c,level=level.split()[-1])[0]
+    qn=Questions.objects.filter(level=d)
+    return(len(qn))
+
 def returnanswer(question):
     answer=Answers.objects.filter(question=question)
-    return(answer)
+    correctAnswer = Answers.objects.filter(question=question, is_correct=True)[0].id
+    return(answer, correctAnswer)
+
+def result(request):
+    category=request.GET.get('category')
+    level=request.GET.get('level')
+    scr=request.GET.get('score')
+    min_correct=request.GET.get('min_correct')
+    return render(request,'result.html',{'category':category, 'level':level, 'score':scr,'min_correct':min_correct})

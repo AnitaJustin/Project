@@ -10,16 +10,18 @@
     href="{% static 'homes/css/styles.css' %}">
 </head>
 <body>
+    <center><h1>CATEGORIES</h1></center>
     {% for i in categories %}
-    <button name="{{i.title}}" onclick="navigateToPage('{{i.title}}')">{{i.title}}</button>
+    <center><button name="{{i.title}}" onclick="navigateToPage('{{i.title}}')">{{i.title}}</button></center>
 
- <script>
-function navigateToPage(category) {
-  window.location.href = "{% url 'levels' %}?category=" + encodeURIComponent(category);
+<script>
+    function navigateToPage(category) {
+    window.location.href = "{% url 'levels' %}?category=" + encodeURIComponent(category);
 }
 </script> 
-<br><br><br>
+
+    <br><br><br>
     {% endfor %}
-    <center><h1>NEXTPAGE</h1></center>
+    
 </body>
 </html>
