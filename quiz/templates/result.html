@@ -7,28 +7,32 @@
     <title>Document</title>
 </head>
 <body>
-    <center>
-        {% if score >= min_correct %}
+    {{score}}
+    {{min_correct}}
+    {% if score >= min_correct %}
         <h1>Congratz</h1>
-        <h2>{{score}}</h2></center>
-        {% else %}
+        <h2>{{score}}</h2>
+        <button onclick="nextlevel()"> Next level </button>
+        <script>
+            function nextlevel(){
+                var levset='{{level}}'.split(" ");
+                var lev = parseInt(levset[levset.length-1])+ 1;
+                var levstr="level "+lev;
+                window.location.href="/info_page/?level=" + encodeURIComponent(levstr) + "&category=" + encodeURIComponent('{{category}}');
+            
+            }
+        </script>
+    {% else %}
         <h1>OOPS Sorry</h1>
         <h2>{{score}}</h2>
-        {% endif %}
         <button onclick="backpage()"> back </button>
-        <button onclick="nextlevel()"> Next level </button>
-
-    <script>
-        var levset='{{level}}'.split(" ")
-        var lev = parseInt(levset[levset.length-1])+ 1;
-        var levstr="level "+lev;
+        <script>
+     
         function backpage(){
-            window.location.href="/levels?category=" + encodeURIComponent('{{category}}');
+            window.location.href="/info_page/?level="+encodeURIComponent('{{level}}') +"&category=" + encodeURIComponent('{{category}}');
         }
-        function nextlevel(){
-            window.location.href="/info_page/?level=" + encodeURIComponent(levstr) + "&category=" + encodeURIComponent('{{category}}') + "&num="+encodeURIComponent(0) + "&score="+encodeURIComponent(0);
-        }
-    </script>
+        </script>
+    {% endif %} 
 
 </body>
 </html>

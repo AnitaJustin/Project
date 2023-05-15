@@ -33,7 +33,6 @@
             window.location.href="/result?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent('{{score}}');
         }
         duration=timer;
-        console.log(duration)
     }, 1000);
 }
 </script>
@@ -53,3 +52,9 @@
 const video =document.createElement('video');
 video.src='';
 video.autoplay = true; -->
+
+<!-- const video=document.getElementById('video')
+video.addEventListener('loadedmetadata', function() {
+
+video.currentTime = '{{duration}}'; 
+}); -->
