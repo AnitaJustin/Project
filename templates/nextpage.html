@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,5 +23,81 @@
     <br><br><br>
     {% endfor %}
     
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>next_page</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'homes/css/styles.css' %}"> -->
+  <style>
+    body{
+        background-color: rgb(19, 13, 30);
+            color: aliceblue;
+        }
+
+.button-row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .icon-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 200px;
+        /* border-radius: 50%; */
+        background-color: #22a88d;
+        margin: 20px;
+        border: 1;
+        outline: none;
+    }
+    .icon-button:hover{
+        background-color: #2de836;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 200px;
+        /* border-radius: 50%; */
+        margin: 20px;
+        border: 1;
+        outline: none;
+    }
+
+    /* .icon-button i {
+        color: #bd1d1d;
+        font-size: 24px;
+    } */
+  </style>
+</head>
+<body>
+    <center>
+        <h1 style="font-family: Cascadia Code Semibold; font-size: 60px;">CATEGORIES</h1>
+  
+    <div class="button-row">
+        {% for i in categories %}
+        <button class="icon-button" name="{{ i.title }}" onclick="navigateToPage('{{ i.title }}')"><h1 style="font-family:ALGERIAN;">{{i.title}}</h1>
+            <i class="fa fa-home"></i>
+        </button>
+        {% if forloop.counter|divisibleby:2 and not forloop.last %}
+    </div>
+    <div class="button-row">
+        {% endif %}
+        {% endfor %}
+    </div>
+</center>
+    <script>
+        function navigateToPage(category) {
+            window.location.href = "{% url 'levels' %}?category=" + encodeURIComponent(category);
+        }
+    </script>
 </body>
 </html>

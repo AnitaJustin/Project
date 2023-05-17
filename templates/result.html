@@ -5,30 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(19, 13, 30);
+            color: aliceblue;
+        }
+        button.next{
+        background-color: rgb(113, 186, 161);
+        border: 2px solid black;
+        color: black;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 10%;
+        height :45px;
+        cursor: pointer;
+        }
+       
+    </style>
 </head>
 <body>
-    <h1>Score = {{score}}</h1>
-    {{score}}
-    {{min_correct}}
+    <center>
+        <h1 style="font-family: footlight MT Light; font-size: 45px; color: rgb(242, 128, 14);">{{level}}</h1>
+        
+    
     {% if score >= min_correct %}
-        <h2>congratulations</h2>
-        <button onclick="nextlevel()">Next Level</button>
+        <h2>Congratulations..!<br> You have passed the level.</h2>
+        <h1>Score : {{score}}</h1>
+        <button class="next" onclick="nextlevel()">Next Level</button>
         <script>
             function nextlevel(){
                 var levset='{{level}}'.split(" ");
                 var lev=parseInt(levset[levset.length-1])+1;
                 var levstr="level "+lev;
-                window.location.href="/info_page/?level=" + encodeURIComponent(levstr) + "&category=" + encodeURIComponent('{{category}}');
+                if('{{level}}'=="level 3"){
+                    window.location.href="/next_page/";
+                }
+                else
+                    window.location.href="/info_page/?level=" + encodeURIComponent(levstr) + "&category=" + encodeURIComponent('{{category}}');
             }
         </script>
     {% else %}
         <h2>Oops!!! Sorry</h2>
-        <button onclick="retry()">RETRY</button>
+        <h1>Score : {{score}}</h1>
+        <button class="next" onclick="retry()">RETRY</button>
         <script>
             function retry(){
                 window.location.href="/info_page/?level=" + encodeURIComponent('{{level}}') + "&category=" + encodeURIComponent('{{category}}');
             }
         </script>
     {% endif %}
+</center>
 </body>
 </html>

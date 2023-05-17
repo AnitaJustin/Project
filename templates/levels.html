@@ -5,23 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(19, 13, 30);
+            color: aliceblue;
+        }
+        button.levels{
+        
+        background-color: aquamarine;
+        border: 2px solid black;
+        color: black;
+       
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 20%;
+        cursor: pointer;
+
+        }
+        button.levels:hover{
+            background-color: green;
+        border: 2px solid black;
+        color: black;
+        
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 20%;
+        }
+        button[name="back"]{
+        background-color: rgb(168, 185, 179);
+        border: 2px solid black;
+        color: black;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 5%;
+        height :35px;
+        cursor: pointer;
+        }
+    </style>
    
 </head>
 <body>
     <center>
-    <button onclick="back()">Back</button>
+    <button name="back" onclick="back()">Back</button>
     <script>
         function back(){
             window.location.href="/next_page";
         }
     </script>
-    <h1>{{category}}</h1>
+    <h1 style="font-family:ALGERIAN; font-size: 60px;">{{category}}</h1>
     <script>
     history.pushState(null, '', window.location.pathname);
 </script>
-    <button name="level 1" onclick="navigateToPage('level 1')">Level 1</button><br><br>
-    <button name="level 2" onclick="navigateToPage('level 2')">Level 2</button><br><br>
-    <button name="level 3" onclick="navigateToPage('level 3')">Level 3</button><br><br>
+    <button class="levels" name="level 1" onclick="navigateToPage('Level 1')"><h2>Level 1</h2></button><br><br>
+    <button class="levels" name="level 2" onclick="navigateToPage('Level 2')"><h2>Level 2</h2></button><br><br>
+    <button class="levels" name="level 3" onclick="navigateToPage('Level 3')"><h2>Level 3</h2></button><br><br>
     <script>
         function navigateToPage(x){
         window.location.href = "/info_page/?level=" + encodeURIComponent(x) + "&category=" + encodeURIComponent('{{category}}');

@@ -5,52 +5,84 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(19, 13, 30);
+            color: aliceblue;
+        }
+        button[name="back"]{
+        background-color: rgb(168, 185, 179);
+        border: 2px solid black;
+        color: black;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 5%;
+        height :35px;
+        cursor: pointer;
+        }
+        button[name="startquiz"]{
+        background-color: rgb(113, 186, 161);
+        border: 2px solid black;
+        color: black;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 10%;
+        height :45px;
+        cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
-    <button onclick="back()">Back</button>
+    <center>
+    <button name="back" onclick="back()">Back</button>
     <script>
         function back(){
             window.location.href="/levels?category=" + encodeURIComponent('{{category}}');
         }
     </script>
-    <center>
-    <h1>{{category}}</h1>
+    
+    <h1 style="font-family:ALGERIAN; color:rgb(20, 197, 117) ; font-size: 40px;">{{category}}</h1>
     
     <h2>{{level}}</h2>
-    <h3><u>Manukkuttan's Info</u></h3>
-    {% if level == "level 1" %}
-        <h4><p>No of questions : 10<br><br>
+    <h2 style="color: rgb(218, 130, 16);"><u>Manukkuttan's Info</u></h2>
+    {% if level == "Level 1" %}
+        <h3><p>No of questions : 10<br><br>
             Time : 1 minute<br><br>
             No of correct answers to unlock next level : 6
             <script>
                 var min_correct = 6;
-                var duration = 6;
+                var duration = 60;
             </script>
-        </h4>
-    {% elif level == "level 2" %}
-        <h4>No of questions : 10<br><br>
-            Time : 2.5 minutes<br><br>
+        </h3>
+    {% elif level == "Level 2" %}
+        <h3>No of questions : 10<br><br>
+            Time : 50 sec<br><br>
             No of correct answers to unlock next level : 7
             <script>
                 var min_correct = 7;
-                var duration = 6;
+                var duration = 50;
             </script>
-        </h4>
+        </h3>
     {% else %}
-        <h4>No of questions : 10<br><br>
-            Time : 2 minutes<br><br>
+        <h3>No of questions : 10<br><br>
+            Time : 45 sec<br><br>
             No of correct answers to unlock next level : 8
             <script>
                 var min_correct = 8;
-                var duration = 6;
+                var duration = 45;
             </script>
         </p>
-        </h4>
+        </h3>
     </center>
 
     {% endif%}
     <center>
-        <button name="startquiz" onclick="navigateToPage()">Start Quiz</button>
+        <button name="startquiz" onclick="navigateToPage()" onclick="onTimer()">Start Quiz</button>
     </center>
     <script>
         function navigateToPage(){

@@ -6,18 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body{
+            background-color: rgb(19, 13, 30);
+            color: aliceblue;
+        }
+        button{
+            background-color: rgb(168, 136, 231);
+        border: 2px solid black;
+        color: black;
+        padding: 32px 16px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 20%;
+        height: 50px;
+        cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <b><div style="display: inline-block; float: right;" id="timer"></div></b><br>
     <center>
-    <h1>{{category}}</h1>
+    <h1 style="font-family:ALGERIAN;">{{category}}</h1>
     <h2>{{level}}</h2>
+    
     <script>
         var q = parseInt('{{num}}')+1;
     </script>
     
     
-    <h3><script>document.write(q)</script>.&nbsp;&nbsp;{{question}}</h3><br><br>
+    
+    <h3><script>document.write(q)</script>.&nbsp;&nbsp;{{question}}&emsp;</center></h3>
 
+    
+    <!-- document.write('{{duration}}'); -->
+
+    <center>
     {% for i in answer %}
     <button id="{{i.id}}" onclick="checkAnswer('{{i.is_correct}}', '{{i.id}}', '{{correctAnswer}}')">
     {{i.answer}} </button><br><br> 
@@ -26,17 +52,21 @@
 
     <script>
         var dur;
-        $(
-            startTimer(parseInt('{{duration}}'))
-            );
-        function startTimer(duration){
+        $(function() {
+            startTimer(parseInt('{{duration}}'));
+         } );
             
+        function startTimer(duration){
+
             setInterval(function(){
+                
             if(--duration < 0){
-                console.log("timer expired")
                 window.location.href="/result/?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}') +"&score=" + encodeURIComponent('{{score}}') + "&min_correct=" +encodeURIComponent('{{min_correct}}');
             }
-            console.log(duration);
+            else{
+                document.getElementById('timer').innerHTML ="Time Left : "+ duration +" sec";
+            }
+
             dur=duration;
             },1000);
         }
