@@ -59,7 +59,7 @@
         function startTimer(duration){
 
             setInterval(function(){
-                
+            
             if(--duration < 0){
                 window.location.href="/result/?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}') +"&score=" + encodeURIComponent('{{score}}') + "&min_correct=" +encodeURIComponent('{{min_correct}}');
             }
