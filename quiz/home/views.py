@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from random import shuffle
+import json
 
 
 # Create your views here.
@@ -28,7 +29,6 @@ def info_page(request):
     lev=level.split("-")[-1]
     category=request.GET.get('category')
     return render(request,'info_page.html',{'level':level,'category':category,'lev':lev})
-
 def question(request):
     level = request.GET.get('level')
     category=request.GET.get('category')
@@ -45,21 +45,40 @@ def question(request):
              obj.save()
          return render(request,'result.html',{'score':score,'category':category,'level':level,'min_correct':min_correct,'lvl':lvl})
     else:
-        # if(num == 0):
-        #     quesset = returnquestionset(category,level,num)
-        #     shuffle(quesset)
-        # if num == 0:
-        #     if 'quesset' not in request.session:
-        #         quesset = returnquestionset(category, level, num)
-        #         shuffle(quesset)
-        #         request.session['quesset'] = quesset
-        #         request.session.save()
-        # else:
-        #     quesset = request.session['quesset']
-        quesset = returnquestionset(category,level,num)
+        if 'quesset' not in request.session:
+            quesset = returnquestionset(category, level, num)
+            shuffle(quesset)
+            request.session['quesset'] = quesset
+            request.session.save()
+        else:
+            quesset = request.session['quesset']
         ques=quesset[num]
         answers,correct_answer=returnanswer(ques)
+
         return render(request,'question.html',{'level':level,'num':num,'category':category,'ques':ques,'answers':answers,'correct_answer':correct_answer,'score':score,'min_correct':min_correct,'duration':duration})
+
+
+# def question(request):
+#     level = request.GET.get('level')
+#     category=request.GET.get('category')
+#     num=int(request.GET.get('num'))
+#     score=int(request.GET.get('score'))
+#     min_correct=int(request.GET.get('min_correct'))
+#     duration=request.GET.get('duration')
+#     length = returnnumquestions(category, level, num)
+#     lvl,nxtlvl=returnlev(category,level)
+#     if(num>=length):
+#          if(score >= min_correct):
+#              obj=user_progress.objects.filter(level=nxtlvl)[0]
+#              obj.is_completed=True
+#              obj.save()
+#          return render(request,'result.html',{'score':score,'category':category,'level':level,'min_correct':min_correct,'lvl':lvl})
+#     else:
+#         
+#         quesset = returnquestionset(category,level,num)
+#         ques=quesset[num]
+#         answers,correct_answer=returnanswer(ques)
+#         return render(request,'question.html',{'level':level,'num':num,'category':category,'ques':ques,'answers':answers,'correct_answer':correct_answer,'score':score,'min_correct':min_correct,'duration':duration})
 def result(request):
     level = request.GET.get('level')
     category=request.GET.get('category')
