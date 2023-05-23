@@ -17,9 +17,15 @@
     <script>
         history.pushState(null,'',window.location.pathname);
     </script>
-    <button name="level 1" onclick="navigateToPage('level 1')">level 1</button><br><br>
-    <button name="level 2" onclick="navigateToPage('level 2')">level 2</button><br><br>
-    <button name="level 3" onclick="navigateToPage('level 3')">level 3</button><br><br>
+   
+  
+{% for level in levels %}
+        {% if level.id in unlock %}
+            <button name="{{ level }}" onclick="navigateToPage('{{ level }}')">{{ level }}</button><br><br>
+        {% else %}
+            <button name="{{ level }}" disabled>{{ level }}</button><br><br>
+        {% endif %}
+{% endfor %}
     <script>
         function navigateToPage(x){
             window.location.href= "/info_page/?level=" + encodeURIComponent(x) + "&category=" +encodeURIComponent('{{category}}');

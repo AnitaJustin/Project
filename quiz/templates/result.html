@@ -15,11 +15,15 @@
         <button onclick="nextlevel()"> Next level </button>
         <script>
             function nextlevel(){
-                var levset='{{level}}'.split(" ");
+                var levset='{{level}}'.split("-");
                 var lev = parseInt(levset[levset.length-1])+ 1;
                 var levstr="level "+lev;
-                window.location.href="/info_page/?level=" + encodeURIComponent(levstr) + "&category=" + encodeURIComponent('{{category}}');
-            
+                if('{{level}}'=="level 3"){
+                    window.location.href="/next_page/";
+                }
+                else{
+                window.location.href="/levels/?level=" + encodeURIComponent(levstr) + "&category=" + encodeURIComponent('{{category}}');
+                }
             }
         </script>
     {% else %}

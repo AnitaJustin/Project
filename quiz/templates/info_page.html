@@ -16,7 +16,7 @@
     <center><h1>{{category}}</h1>
     <h2>{{level}}</h2>
     <h1><u>ManuKuttan's info</u></h1>
-        {% if level == "level 1" %}
+        {% if lev == '1' %}
         <h4>No of questions:10<br><br>
         timer:60 seconds<br><br>
         Min No Of Correct Answers to unlock next level:6</h4>
@@ -24,7 +24,7 @@
             var min_correct=6;
             var duration=60;
         </script>
-        {% elif level == 'level 2' %}
+        {% elif lev == '2' %}
         <h4>No of questions:10<br><br>
         timer:50 seconds<br><br>
         Min No Of Correct Answers to unlock next level:7</h4>
