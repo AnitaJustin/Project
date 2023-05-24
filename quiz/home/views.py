@@ -48,10 +48,11 @@ def question(request):
         if 'quesset' not in request.session:
             quesset = returnquestionset(category, level, num)
             shuffle(quesset)
-            request.session['quesset'] = quesset
+            request.session['quesset'] = [q.id for q in quesset]
             request.session.save()
         else:
-            quesset = request.session['quesset']
+            quessetIds = request.session['quesset']
+            quesset = [Question.objects.get(pk=pk_id) for pk_id in quessetIds]
         ques=quesset[num]
         answers,correct_answer=returnanswer(ques)
 
