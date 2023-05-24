@@ -8,6 +8,7 @@ import json
 def homepage(request):
     if 'completed_levels' in request.session:
         del request.session['completed_levels']
+        
     return render(request,'home.html')
     
 
@@ -21,6 +22,7 @@ def levels(request):
     category_obj = Category.objects.get(title=category)
     levels = Level.objects.filter(category=category_obj)
     levels=list(levels)
+    
     if 'completed_levels' not in request.session:
         k = user_progress.objects.filter(is_completed=True)
         request.session['completed_levels']=[i.level.id for i in k]
@@ -34,7 +36,11 @@ def info_page(request):
     level = request.GET.get('level')
     lev=level.split("-")[-1]
     category=request.GET.get('category')
+    if 'quesset' in request.session:
+        del request.session['quesset']
+        request.session.save()
     return render(request,'info_page.html',{'level':level,'category':category,'lev':lev})
+    
 def question(request):
     level = request.GET.get('level')
     category=request.GET.get('category')
@@ -71,6 +77,7 @@ def result(request):
     min_correct=int(request.GET.get('min_correct'))
     score=int(request.GET.get('score'))
     lvl,nxtlvl=returnlev(category,level)
+    
     if(score>=min_correct):
              obj=user_progress.objects.filter(level=nxtlvl)[0]
              request.session['completed_levels'].append(obj.level.id)
@@ -83,14 +90,11 @@ def returnquestionset(category,level,num):
     lev=level.split("-")[-1]
     lvl=Level.objects.filter(category=cat,level=lev)[0]
     question=Question.objects.filter(level=lvl)
-    # question=list(question)
+    question=list(question)
     return(question)
 
 def returnquestion(category, level, num):
     question = returnquestionset(category, level, num)
-    # if(num == 0):
-    #     shuffle(question)
-    # return question[int(num)]
     return question[num]
 
 def returnnumquestions(category, level, num):
