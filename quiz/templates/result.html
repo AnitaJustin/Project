@@ -5,8 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(19, 13, 30);
+            color: aliceblue;
+        }
+        button.next{
+        background-color: rgb(113, 186, 161);
+        border: 2px solid black;
+        color: black;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 10%;
+        height :45px;
+        cursor: pointer;
+        }
+       
+    </style>
 </head>
 <body>
+    <center>
     {{score}}
     {{min_correct}}
     {% if score >= min_correct %}
@@ -31,12 +51,12 @@
         <h2>{{score}}</h2>
         <button onclick="backpage()"> back </button>
         <script>
-     
+    
         function backpage(){
             window.location.href="/info_page/?level="+encodeURIComponent('{{level}}') +"&category=" + encodeURIComponent('{{category}}');
         }
         </script>
     {% endif %} 
-
+</center>
 </body>
 </html>

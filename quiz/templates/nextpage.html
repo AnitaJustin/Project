@@ -5,8 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(19, 13, 30);
+                color: aliceblue;
+            }
+    
+    .button-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+    
+        .icon-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            /* border-radius: 50%; */
+            background-color: #22a88d;
+            margin: 20px;
+            border: 1;
+            outline: none;
+        }
+        .icon-button:hover{
+            background-color: #2de836;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            /* border-radius: 50%; */
+            margin: 20px;
+            border: 1;
+            outline: none;
+        }
+    
+        /* .icon-button i {
+            color: #bd1d1d;
+            font-size: 24px;
+        } */
+      </style>
 </head>
 <body>
+    <center>
     <h1>Categories</h1>
     {% for each in category %}
     <button name="{{each.title}}" onclick="navigateToPage('{{each.title}}')">{{each.title}}</button><br><br>
@@ -17,5 +60,6 @@
 
         }
     </script>
+    </center>
 </body>
 </html>
