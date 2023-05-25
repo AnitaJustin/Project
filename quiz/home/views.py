@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from random import shuffle
-import json
+
 
 
 # Create your views here.
@@ -24,10 +24,9 @@ def levels(request):
     levels=list(levels)
     
     if 'completed_levels' not in request.session:
-        k = user_progress.objects.filter(is_completed=True)
-        request.session['completed_levels']=[i.level.id for i in k]
+        k=Level.objects.filter(level="1")
+        request.session['completed_levels']=[i.id for i in k]
         request.session.save()
-    # unlock=list(unlock)
     unlock=request.session['completed_levels']
     return render(request,'levels.html',{'category':category,'unlock':unlock,'levels':levels})
 
@@ -52,8 +51,8 @@ def question(request):
     lvl,nxtlvl=returnlev(category,level)
     if(num>=length):
          if(score >= min_correct):
-             obj=user_progress.objects.filter(level=nxtlvl)[0]
-             request.session['completed_levels'].append(obj.level.id)
+            #  obj=Level.objects.filter(level=nxtlvl)[0]
+             request.session['completed_levels'].append(nxtlvl.id)
              request.session.save()
          return render(request,'result.html',{'score':score,'category':category,'level':level,'min_correct':min_correct,'lvl':lvl})
     else:
@@ -79,8 +78,8 @@ def result(request):
     lvl,nxtlvl=returnlev(category,level)
     
     if(score>=min_correct):
-             obj=user_progress.objects.filter(level=nxtlvl)[0]
-             request.session['completed_levels'].append(obj.level.id)
+            #  obj=user_progress.objects.filter(level=nxtlvl)[0]
+             request.session['completed_levels'].append(nxtlvl.id)
              request.session.save()
     return render(request,'result.html',{'score':score,'category':category,'level':level,'min_correct':min_correct,'lvl':lvl})
         

@@ -39,10 +39,10 @@ class Answer(models.Model):
     def __str__(self):
         return (self.text)
     
-class user_progress(models.Model):
-    is_completed=models.BooleanField(default=False)
-    level=models.ForeignKey(Level,on_delete=models.CASCADE)
-    def __str__(self):
-        return f"{self.level}"
+# class user_progress(models.Model):
+#     is_completed=models.BooleanField(default=False)
+#     level=models.ForeignKey(Level,on_delete=models.CASCADE)
+#     def __str__(self):
+#         return f"{self.level}"
 
 
