@@ -6,60 +6,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
-            background-color: rgb(19, 13, 30);
-                color: aliceblue;
-            }
-    
+       body {
+    background-color: rgb(19, 13, 30);
+    color: aliceblue;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    }
+
+    .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    }
+
+    h1 {
+    font-size: 70px;
+    margin-bottom: 20px;
+    }
+
+    button {
+    display: inline-block;
+    /* padding: 10px 20px; */
+    width: 210px;
+    height: 70px;
+    font-size: 20px;
+    background-color: #743abc;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    }
+
+    button:hover {
+    background-color: #be93e0;
+    }
     .button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.button-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
-    
-        .icon-button {
-            display: flex;
-            align-items: center;
+
+        .button-container button {
+            margin-right: 150px;
+            margin-left: 150px;
+            margin-bottom: 40px;
+            margin-top: 40px;
             justify-content: center;
-            width: 200px;
-            height: 200px;
-            /* border-radius: 50%; */
-            background-color: #22a88d;
-            margin: 20px;
-            border: 1;
-            outline: none;
+            
         }
-        .icon-button:hover{
-            background-color: #2de836;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 200px;
-            height: 200px;
-            /* border-radius: 50%; */
-            margin: 20px;
-            border: 1;
-            outline: none;
-        }
-    
-        /* .icon-button i {
-            color: #bd1d1d;
-            font-size: 24px;
-        } */
-      </style>
+
+    /* button:focus {
+      outline: none;
+    } */
+
+</style>
 </head>
 <body>
-    <center>
-    <h1>Categories</h1>
+    
+    <div class="center">
+    <h1>Categories</h1></div><br>
+    <div class="button-container">
     {% for each in category %}
     <button name="{{each.title}}" onclick="navigateToPage('{{each.title}}')">{{each.title}}</button><br><br>
     {% endfor %}
+</div>
     <script>
         function navigateToPage(category) {
             window.location.href="/levels/?category=" + encodeURIComponent(category);
 
         }
     </script>
-    </center>
+   
 </body>
 </html>

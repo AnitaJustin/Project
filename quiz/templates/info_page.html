@@ -10,6 +10,13 @@
             background-color: rgb(19, 13, 30);
             color: aliceblue;
         }
+        h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    }
+    h4{
+        font-size: 25px;
+    }
         button[name="back"]{
         background-color: rgb(168, 185, 179);
         border: 2px solid black;
@@ -37,7 +44,7 @@
     </style>
 </head>
 <body>
-    <button onclick="back()">Back</button>
+    <button name="back" onclick="back()">Back</button>
     <script>
         function back() {
             window.location.href="/levels?category=" +encodeURIComponent('{{category}}');
@@ -72,7 +79,7 @@
         </script>
         {% endif %}
         <center>
-        <button onclick="navigateToPage()">Start Quiz</button></center>
+        <button name="startquiz" onclick="navigateToPage()">Start Quiz</button></center>
 
 <script>
     function navigateToPage(){

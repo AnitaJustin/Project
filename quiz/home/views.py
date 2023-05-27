@@ -48,12 +48,14 @@ def question(request):
     min_correct=int(request.GET.get('min_correct'))
     duration=request.GET.get('duration')
     length = returnnumquestions(category, level, num)
-    lvl,nxtlvl=returnlev(category,level)
+    lev,lvl=returnlev(category,level)
     if(num>=length):
          if(score >= min_correct):
-            #  obj=Level.objects.filter(level=nxtlvl)[0]
-             request.session['completed_levels'].append(nxtlvl.id)
-             request.session.save()
+            if(lev<3):
+                nxtlvl=returnnextlev(category,level)
+                #  obj=Level.objects.filter(level=nxtlvl)[0]
+                request.session['completed_levels'].append(nxtlvl.id)
+                request.session.save()
          return render(request,'result.html',{'score':score,'category':category,'level':level,'min_correct':min_correct,'lvl':lvl})
     else:
         if 'quesset' not in request.session:
@@ -75,12 +77,13 @@ def result(request):
     category=request.GET.get('category')
     min_correct=int(request.GET.get('min_correct'))
     score=int(request.GET.get('score'))
-    lvl,nxtlvl=returnlev(category,level)
-    
+    lev,lvl=returnlev(category,level)
     if(score>=min_correct):
-            #  obj=user_progress.objects.filter(level=nxtlvl)[0]
-             request.session['completed_levels'].append(nxtlvl.id)
-             request.session.save()
+            if(lev<3):
+                nxtlvl=returnnextlev(category,level)
+                #  obj=Level.objects.filter(level=nxtlvl)[0]
+                request.session['completed_levels'].append(nxtlvl.id)
+                request.session.save()
     return render(request,'result.html',{'score':score,'category':category,'level':level,'min_correct':min_correct,'lvl':lvl})
         
     
@@ -105,12 +108,16 @@ def returnanswer(qn):
     ans=list(ans)
     shuffle(ans)
     correct_answer=Answer.objects.filter(question=qn,is_correct="True")[0].id
-    return(ans,correct_answer)
+    return(ans,correct_answer) 
 
 def returnlev(category,level):
     cat=Category.objects.filter(title=category)[0]
+    lev=int(level.split("-")[-1])
+    lvl=Level.objects.filter(category=cat,level=lev)[0]
+    return(lev,lvl)
+def returnnextlev(category,level):
+    cat=Category.objects.filter(title=category)[0]
     lev=level.split("-")[-1]
     nexlev=int(lev)+1
-    lvl=Level.objects.filter(category=cat,level=lev)[0]
     nextlvl=Level.objects.filter(category=cat,level=nexlev)[0]
-    return(lvl,nextlvl)
+    return(nextlvl)

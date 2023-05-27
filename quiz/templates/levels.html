@@ -10,12 +10,16 @@
             background-color: rgb(19, 13, 30);
             color: aliceblue;
         }
+        h1 {
+    font-size: 70px;
+    margin-bottom: 20px;
+    }
         button.levels{
         
         background-color: aquamarine;
         border: 2px solid black;
         color: black;
-       
+        height: 50px;
         text-align: center;
         display: inline-block;
         font-size: 16px;
@@ -35,6 +39,19 @@
         border-radius: 12px;
         width: 20%;
         }
+        button.level{
+        background-color: rgb(194, 210, 205);
+        border: 2px solid black;
+        color: black;
+        height: 50px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        width: 20%;
+        cursor: pointer;
+
+        }
         button[name="back"]{
         background-color: rgb(168, 185, 179);
         border: 2px solid black;
@@ -51,14 +68,14 @@
    
 </head>
 <body>
-    <button onclick="back()">Back</button>
+    <button name="back" onclick="back()">Back</button>
     <center>
     <script>
         function back() {
             window.location.href="/next_page";
         }
     </script>
-    <h1>{{category}}</h1>
+    <h1>{{category}}</h1><br><br>
     <script>
         history.pushState(null,'',window.location.pathname);
     </script>
@@ -66,9 +83,9 @@
   
 {% for level in levels %}
         {% if level.id in unlock %}
-            <button name="{{ level }}" onclick="navigateToPage('{{ level }}')">{{ level }}</button><br><br>
+            <button class="levels" name="{{ level }}" onclick="navigateToPage('{{ level }}')">{{ level }}</button><br><br>
         {% else %}
-            <button name="{{ level }}" disabled>{{ level }}</button><br><br>
+            <button class="level" name="{{ level }}" disabled>{{ level }}</button><br><br>
         {% endif %}
 {% endfor %}
     <script>
