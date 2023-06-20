@@ -15,7 +15,7 @@ class Level(models.Model):
         (4, 'level 4'),
         (5, 'level 5')
     )
-    level=models.CharField(max_length=10,choices=LEVELS,default=1)
+    level=models.IntegerField(max_length=10,choices=LEVELS,default=1)
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
     # time=models.CharField(max_length=10)
 
