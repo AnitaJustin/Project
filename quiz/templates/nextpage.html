@@ -6,29 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
        body {
-    background-color: rgb(19, 13, 30);
+    background-color: #d1d7db;
     color: aliceblue;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     }
 
     .center {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
     }
 
-    h1 {
+    /* h1 {
     font-size: 70px;
     margin-bottom: 20px;
-    }
+    } */
 
-    button {
+    /* button {
     display: inline-block;
-    /* padding: 10px 20px; */
     width: 210px;
     height: 70px;
     font-size: 20px;
@@ -64,23 +63,64 @@
             margin-top: 40px;
             justify-content: center;
             
-        }
+        } */
 
     /* button:focus {
       outline: none;
     } */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .icon-button {
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 200px;
+        /* border-radius: 50%; */
+        background-color: #f5f4f4;
+        margin: 20px;
+        border:  none;
+        border-radius: 10px;
+        outline: none;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    }
+    
+    .icon-button:hover{
+        background-color: #eae4ee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 200px;
+        /* border-radius: 50%; */
+        margin: 20px;
+        border: 1;
+        outline: none;
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        
+        cursor: pointer;
+        }
 
 </style>
 </head>
 <body>
     
     <div class="center">
-    <h1>Categories</h1></div><br>
+    <h1 style=" font-size: 4rem;color: rgb(3, 32, 60);">CATEGORIES</h1></div><br>
     <div class="button-container">
     {% for each in category %}
-    <button name="{{each.title}}" onclick="navigateToPage('{{each.title}}')">{{each.title}}</button><br><br>
-    {% endfor %}
-</div>
+    <button class="icon-button" name="{{each.title}}" onclick="navigateToPage('{{each.title}}')"><h1>{{each.title | title}}</h1></button><br><br>
+    {% if forloop.counter|divisibleby:2 and not forloop.last %}
+    </div>
+    <div class="button-container">
+        {% endif %}
+        {% endfor %}
+    </div>
+
     <script>
         function navigateToPage(category) {
             window.location.href="/levels/?category=" + encodeURIComponent(category);

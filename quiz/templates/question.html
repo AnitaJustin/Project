@@ -28,7 +28,7 @@
 </head>
 <body>
 
-    <b><div style="display: inline-block; float: right;" id="timer"></div></b><br>
+    <b><div style="display: inline-block; font-size: 1.5rem; float: right;" id="timer"></div></b><br>
     <center>
     <h1 style="font-family:ALGERIAN;">{{category}}</h1>
     <!-- <h2>{{level}}</h2> -->
@@ -39,7 +39,7 @@
     
     
     
-    <h3><script>document.write(q)</script>.&nbsp;&nbsp;{{ques}}&emsp;</h3>
+    <div style="font-size: 1.8rem; padding-bottom:20px;"><script>document.write(q)</script>.&nbsp;&nbsp;{{ques}}&emsp;</div>
     {% for i in answers %}
     <button id="{{i.id}}" onclick="checkAnswer('{{i.is_correct}}','{{i.id}}','{{correct_answer}}')">{{i.text}}</button><br><br>
     {% endfor %}
@@ -70,7 +70,7 @@
             for (var i = 0; i < buttons.length; i++)
                 buttons[i].disabled=true;
             var button = document.getElementById(correct_answer);
-                button.style.backgroundColor = "green";
+                button.style.backgroundColor = "#41f847";
             if (answer == "True") {
                 
                 var scr=parseInt('{{score}}')+1;
