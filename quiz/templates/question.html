@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
 
@@ -55,7 +56,12 @@
 
     <b><div style="display: inline-block; font-size: 1.5rem; float: right;" id="timer"></div></b><br>
     <center>
-    <h1 style="font-size: 3rem;color: rgb(3, 32, 60);">{{category}}</h1>
+    <h1 style="font-size: 3rem;color: rgb(3, 32, 60);">{{category | title}}
+        {% if category.title == 'Sports'%}<i class="fa-solid fa-baseball"></i>{%endif%}
+        {% if category.title == 'Human-Body'%} <i class="fa-solid fa-person" style="font-size: 5rem;"></i>{%endif%}
+        {% if category.title == 'Current Affairs'%} <i class="fa-solid fa-book-open"></i>{%endif%}
+        {% if category.title == 'History'%} <i class="fa-solid fa-clock-rotate-left"></i>{%endif%}
+    </h1>
     <!-- <h2>{{level}}</h2> -->
     
     <script>
@@ -66,7 +72,7 @@
     
     <div style="font-size: 1.9rem; padding-bottom:20px;"><script>document.write(q)</script>.&nbsp;&nbsp;{{ques}}&emsp;</div>
     {% for i in answers %}
-    <button id="{{i.id}}" onclick="checkAnswer('{{i.is_correct}}','{{i.id}}','{{correct_answer}}')">{{i.text}}</button><br><br>
+    <button id="{{i.id}}" onclick="checkAnswer('{{i.is_correct}}','{{i.id}}','{{correct_answer}}')" style = "font-weight: bold;">{{i.text}}</button><br><br>
     {% endfor %}
 </center>
     <script>
