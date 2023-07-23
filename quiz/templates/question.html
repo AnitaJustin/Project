@@ -49,11 +49,31 @@
         cursor: pointer;
         margin-bottom: 10px;
         }
+  #progressBar {
+  width: 90%;
+  margin: 10px auto;
+  height: 22px;
+  background-color: #1f2432;
+}
+
+#progressBar div {
+  height: 100%;
+  text-align: right;
+  padding: 0 10px;
+  line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+  width: 0;
+  background-color: #a6a3a8;
+  box-sizing: border-box;
+}
+
+
     </style>
 </head>
 <body>
-
-    <b><div style="display: inline-block; font-size: 1.5rem; float: right;" id="timer"></div></b><br>
+    <div id="progressBar">
+        <div class="bar"></div>
+      </div>
+    <!-- <b><div style="display: inline-block; font-size: 1.5rem; float: right;" id="timer"></div></b><br> -->
     <center>
     <h1 style="font-size: 3rem;color: rgb(3, 32, 60);">{{category}}</h1>
     <!-- <h2>{{level}}</h2> -->
@@ -73,23 +93,26 @@
         var dur;
         $(function () {
            
-            startTimer(parseInt('{{duration}}'));
+            // startTimer(parseInt('{{duration}}'));
+            progress(parseInt('{{duration}}'), parseInt('{{fulltym}}'), $('#progressBar'));
         });
-        function startTimer(duration) {
-            setInterval(function () {
-            if (--duration < 0) {
-            //checking if the timer gets to zero
-            // submit the level and move on to the next one
-            window.location.href="/result?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent('{{score}}')+"&min_correct="+encodeURIComponent('{{min_correct}}');
-            }
-            else{
-                document.getElementById('timer').innerHTML ="Time Left : "+ duration +" sec";
-            }
+    function progress(timeleft, timetotal, $element) {
+    var progressBarWidth = (timetotal - timeleft) * $element.width() / timetotal;
+    dur=timeleft;
+    $element.find('div').animate({ width: progressBarWidth }, 500).html(Math.floor(timeleft/60) + ":"+ timeleft%60);
+    if(timeleft > 0) {
+        setTimeout(function() {
 
-            dur=duration;
-            // pass the current time to the next qn page
+            progress(timeleft - 1, timetotal, $element);
             }, 1000);
-        }
+        }   
+    else {
+                window.location.href="/result?category=" + encodeURIComponent('{{category}}') + "&level=" + encodeURIComponent('{{level}}')+ "&score="+encodeURIComponent('{{score}}')+"&min_correct="+encodeURIComponent('{{min_correct}}');
+            }
+    };
+
+ 
+
         function checkAnswer(answer,id,correct_answer) {
             var buttons=document.querySelectorAll('button');
             for (var i = 0; i < buttons.length; i++)

@@ -59,18 +59,25 @@ def question(request):
          return render(request,'result.html',{'score':score,'category':category,'level':level,'min_correct':min_correct,'lvl':lvl})
     else:
         if 'quesset' not in request.session:
+            request.session['fulltym']=duration
+            request.session.save()
             quesset = returnquestionset(category, level, num)
             shuffle(quesset)
             request.session['quesset'] = [q.id for q in quesset]
             request.session.save()
+            ques=quesset[num]
+            answers,correct_answer=returnanswer(ques)
+            
+
         else:
             quessetIds = request.session['quesset']
             quesset = [Question.objects.get(pk=pk_id) for pk_id in quessetIds]
         
         ques=quesset[num]
+        fulltym=request.session['fulltym']
         answers,correct_answer=returnanswer(ques)
 
-        return render(request,'question.html',{'level':level,'num':num,'category':category,'ques':ques,'answers':answers,'correct_answer':correct_answer,'score':score,'min_correct':min_correct,'duration':duration})
+        return render(request,'question.html',{'level':level,'num':num,'fulltym':fulltym,'category':category,'ques':ques,'answers':answers,'correct_answer':correct_answer,'score':score,'min_correct':min_correct,'duration':duration})
 
 def result(request):
     level = request.GET.get('level')
