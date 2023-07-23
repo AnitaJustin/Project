@@ -5,48 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body{
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
+        body {
+            background-color: #d1d7db;
+            color: aliceblue;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        /* body{
             background-color: rgb(19, 13, 30);
             color: aliceblue;
-        }
+        } */
         h1 {
     font-size: 70px;
     margin-bottom: 20px;
     }
         button.levels{
-        
-        background-color: aquamarine;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f5f4f4;
         border: 2px solid black;
         color: black;
         height: 50px;
         text-align: center;
         display: inline-block;
-        font-size: 16px;
+        font-size: 20px;
         border-radius: 12px;
         width: 20%;
         cursor: pointer;
 
         }
         button.levels:hover{
-            background-color: green;
-        border: 2px solid black;
+        background-color: #ffffff;
+        border:2px solid rgb(152, 157, 152);
         color: black;
         
         text-align: center;
         display: inline-block;
-        font-size: 16px;
+        font-size: 20px;
         border-radius: 12px;
         width: 20%;
         }
         button.level{
-        background-color: rgb(194, 210, 205);
+        font-family: 'Poppins', sans-serif;
+        background-color: rgb(162, 195, 184);
         border: 2px solid black;
         color: black;
         height: 50px;
         text-align: center;
         display: inline-block;
-        font-size: 16px;
+        font-size: 20px;
         border-radius: 12px;
         width: 20%;
         cursor: pointer;
@@ -68,14 +78,20 @@
    
 </head>
 <body>
-    <button name="back" onclick="back()">Back</button>
+    <button name="back" onclick="back()" style="background-color:#d1d7db;border: none; background: none; margin-top: 10px;"><i class="fa-solid fa-arrow-left" style="font-size: 2rem;"></i></button>
     <center>
     <script>
         function back() {
             window.location.href="/next_page";
         }
     </script>
-    <h1>{{category}}</h1><br><br>
+    <h1 style=" font-size: 4rem;color: rgb(3, 32, 60);">{{category | title}} 
+        {% if category.title == 'Sports'%}<i class="fa-solid fa-baseball"></i>{%endif%}
+        {% if category.title == 'Human-Body'%} <i class="fa-solid fa-person" style="font-size: 5rem;"></i>{%endif%}
+        {% if category.title == 'Current Affairs'%} <i class="fa-solid fa-book-open"></i>{%endif%}
+        {% if category.title == 'History'%} <i class="fa-solid fa-clock-rotate-left"></i>{%endif%}
+
+    </h1><br><br>
     <script>
         history.pushState(null,'',window.location.pathname);
     </script>
@@ -83,9 +99,9 @@
   
 {% for level in levels %}
         {% if level.id in unlock %}
-            <button class="levels" name="{{ level }}" onclick="navigateToPage('{{ level }}')">{{ level }}</button><br><br>
+            <button class="levels" name="{{ level }}" onclick="navigateToPage('{{ level }}')" style="font-weight: bold;"> Level {{forloop.counter}}   </button><br><br>
         {% else %}
-            <button class="level" name="{{ level }}" disabled>{{ level }}</button><br><br>
+            <button class="level" name="{{ level }}" disabled style="font-weight: bold;"> <i class="fa-solid fa-lock"></i> Level {{forloop.counter}}</button><br><br>
         {% endif %}
 {% endfor %}
     <script>
