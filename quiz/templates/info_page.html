@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <title>info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
         body{
-            background-color: rgb(19, 13, 30);
-            color: aliceblue;
+            background-color: #d1d7db;
+            color: rgb(0, 6, 11);
+            font-family: 'Poppins', sans-serif;
         }
         h1 {
     font-size: 40px;
@@ -40,39 +45,49 @@
         width: 10%;
         height :45px;
         cursor: pointer;
+        font-weight: bold;
+        }
+        button[name='startquiz']:hover{
+            background-color: #80909c;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <button name="back" onclick="back()">Back</button>
+    <button name="back" onclick="back()" style="background-color:#d1d7db;border: none; background: none; margin-top: 10px;"><i class="fa-solid fa-arrow-left" style="font-size: 2rem;"></i></button>
     <script>
         function back() {
             window.location.href="/levels?category=" +encodeURIComponent('{{category}}');
         }
     </script>
-    <center><h1>{{category}}</h1>
-    <h2>{{level}}</h2>
+    <center><h1 style="font-size: 4rem;">{{category | title}}
+        {% if category.title == 'Sports'%}<i class="fa-solid fa-baseball"></i>{%endif%}
+        {% if category.title == 'Human-Body'%} <i class="fa-solid fa-person" style="font-size: 5rem;"></i>{%endif%}
+        {% if category.title == 'Current Affairs'%} <i class="fa-solid fa-book-open"></i>{%endif%}
+        {% if category.title == 'History'%} <i class="fa-solid fa-clock-rotate-left"></i>{%endif%}
+    </h1>
+    <h2 style="font-size: 2rem;">Level {{lev}}</h2>
     <h1><u>ManuKuttan's info</u></h1>
         {% if lev == '1' %}
-        <h4>No of questions:10<br><br>
-        timer:60 seconds<br><br>
-        Min No Of Correct Answers to unlock next level:6</h4>
+        <h4>No of questions : 10<br><br>
+        Timer : 60 seconds<br><br>
+        Min No Of Correct Answers to unlock next level : 6</h4>
         <script>
             var min_correct=6;
             var duration=60;
         </script>
         {% elif lev == '2' %}
-        <h4>No of questions:10<br><br>
-        timer:50 seconds<br><br>
-        Min No Of Correct Answers to unlock next level:7</h4>
+        <h4>No of questions : 10<br><br>
+        Timer : 50 seconds<br><br>
+        Min No Of Correct Answers to unlock next level : 7</h4>
         <script>
             var min_correct=7;
             var duration=50;
         </script>
         {% else %}
-        <h4>No of questions:10<br><br>
-        timer:40 seconds<br><br>
-        Min No Of Correct Answers to unlock next level:8</h4></center>
+        <h4>No of questions : 10<br><br>
+        Timer : 40 seconds<br><br>
+        Min No Of Correct Answers to unlock next level : 8</h4></center>
         <script>
             var min_correct=8;
             var duration=40;
