@@ -10,33 +10,34 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
 
-       body {
-    background-color: #d1d7db;
-    color:  rgb(3, 32, 60);
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
+    body {
+        background-color: #d1d7db;
+        color:  rgb(3, 32, 60);
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
     }
-        button{
-            background-color: #f5f4f4;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
+
+    button{
+        background-color: #f5f4f4;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         border: 2px solid black;
         color: black;
         padding: 32px 16px;
-        align-items: center;
-        justify-content: center;
-        display: inline-block;
+         align-items: center; 
+        justify-content: center; 
+        display: inline-block; 
         border-radius: 12px;
         width: 20%;
-        height: 50px;
+        min-width: 200px;
         cursor: pointer;
         margin-bottom: 10px;
         }
-        button:hover{
-            background-color: #cac8cc;
-            font-family: 'Poppins', sans-serif;
+    button:hover{
+        background-color: #cac8cc;
+        font-family: 'Poppins', sans-serif;
         box-shadow: rgb(34, 54, 74) 0px 20px 30px -10px;
         border: 2px solid black;
         color: black;
@@ -46,34 +47,47 @@
         font-size: 16px;
         border-radius: 12px;
         width: 20%;
-        height: 50px;
         cursor: pointer;
         margin-bottom: 10px;
-        }
-  #progressBar {
-  width: 90%;
-  margin: 10px auto;
-  height: 22px;
-  background-color: #1f2432;
-}
+    }
 
-#progressBar div {
-  height: 100%;
-  text-align: right;
-  padding: 0 10px;
-  line-height: 22px; /* same as #progressBar height if we want text middle aligned */
-  width: 0;
-  background-color: #a6a3a8;
-  box-sizing: border-box;
-}
+    .progress-section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top:10px
+    }
 
+    .progress-section i {
+        font-size: 2rem;
+        color: #1d0863;
+    }
 
+    #progressBar {
+    width: 90%;
+    margin-left: 5px;
+    height: 22px;
+    background-color: #1f2432;
+    color:white;
+    }
+
+    #progressBar div {
+        height: 100%;
+        text-align: right;
+        padding: 0 10px;
+        line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+        width: 0;
+        background-color: #a6a3a8;
+        box-sizing: border-box;
+    }
     </style>
 </head>
+
 <body>
+    <div class="progress-section"><i class="fa-solid fa-stopwatch"></i>
     <div id="progressBar">
         <div class="bar"></div>
-      </div>
+      </div></div>
     <!-- <b><div style="display: inline-block; font-size: 1.5rem; float: right;" id="timer"></div></b><br> -->
     <center>
     <h1 style="font-size: 3rem;color: rgb(3, 32, 60);">{{category | title}}
@@ -87,7 +101,6 @@
     <script>
         var q = parseInt('{{num}}')+1;
     </script>
-    
     
     
     <div style="font-size: 1.9rem; padding-bottom:20px;"><script>document.write(q)</script>.&nbsp;&nbsp;{{ques}}&emsp;</div>

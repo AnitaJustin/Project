@@ -2,8 +2,6 @@ from django.shortcuts import render
 from .models import *
 from random import shuffle
 
-
-
 # Create your views here.
 def homepage(request):
     if 'completed_levels' in request.session:

@@ -66,10 +66,10 @@
         {% if category.title == 'Current Affairs'%} <i class="fa-solid fa-book-open"></i>{%endif%}
         {% if category.title == 'History'%} <i class="fa-solid fa-clock-rotate-left"></i>{%endif%}
     </h1>
-    <h2 style="font-size: 2rem;">Level {{lev}}</h2>
+    <h2 style="font-size: 2rem;">Level - {{lev}}</h2>
     <h1><u>ManuKuttan's info</u></h1>
         {% if lev == '1' %}
-        <h4>No of questions : 10<br><br>
+        <h4>No of Questions : 10<br><br>
         Timer : 60 seconds<br><br>
         Min No Of Correct Answers to unlock next level : 6</h4>
         <script>
@@ -77,7 +77,7 @@
             var duration=60;
         </script>
         {% elif lev == '2' %}
-        <h4>No of questions : 10<br><br>
+        <h4>No of Questions : 10<br><br>
         Timer : 50 seconds<br><br>
         Min No Of Correct Answers to unlock next level : 7</h4>
         <script>
@@ -85,7 +85,7 @@
             var duration=50;
         </script>
         {% else %}
-        <h4>No of questions : 10<br><br>
+        <h4>No of Questions : 10<br><br>
         Timer : 40 seconds<br><br>
         Min No Of Correct Answers to unlock next level : 8</h4></center>
         <script>

@@ -35,7 +35,6 @@
         border-radius: 12px;
         width: 20%;
         cursor: pointer;
-
         }
         button.levels:hover{
         background-color: #ffffff;
@@ -99,9 +98,9 @@
   
 {% for level in levels %}
         {% if level.id in unlock %}
-            <button class="levels" name="{{ level }}" onclick="navigateToPage('{{ level }}')" style="font-weight: bold;"> Level {{forloop.counter}}   </button><br><br>
+            <button class="levels" name="{{ level }}" onclick="navigateToPage('{{ level }}')" style="font-weight: bold;"> Level - {{forloop.counter}}   </button><br><br>
         {% else %}
-            <button class="level" name="{{ level }}" disabled style="font-weight: bold;"> <i class="fa-solid fa-lock"></i> Level {{forloop.counter}}</button><br><br>
+            <button class="level" name="{{ level }}" disabled style="font-weight: bold;"> <i class="fa-solid fa-lock"></i> Level - {{forloop.counter}}</button><br><br>
         {% endif %}
 {% endfor %}
     <script>
