@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from .models import *
 from random import shuffle
+from quiz.settings import BASE_DIR
+
 
 # Create your views here.
 def homepage(request):
+    
     if 'completed_levels' in request.session:
         del request.session['completed_levels']
         
@@ -12,6 +15,7 @@ def homepage(request):
 
 
 def nextpage(request):
+    print('base dir is',BASE_DIR)
     category=Category.objects.all()
     return render(request,'nextpage.html',{'category': category})
 
@@ -112,7 +116,7 @@ def returnanswer(qn):
     ans=Answer.objects.filter(question=qn)
     ans=list(ans)
     shuffle(ans)
-    correct_answer=Answer.objects.filter(question=qn,is_correct="True")[0].id
+    correct_answer=Answer.objects.filter(question=qn,is_correct=True)[0].id
     return(ans,correct_answer) 
 
 def returnlev(category,level):

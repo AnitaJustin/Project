@@ -5,10 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home</title>
-</head>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
+         body {
+      background-color: #d1d7db;
+      color: rgb(21, 23, 25);
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      }
+  
+      .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      }
+</style>
+  </head>
 <body>
     <center><img  src="https://im.rediff.com/money/2014/aug/28logo1.jpg"></center>
-    <center><h1>QUIZ</h1></center>
+    <center><h1 style=" font-size: 5rem;"> TRIFLES </h1></center>
     <script>
         setTimeout(function() {
           window.location.href = "{% url 'next_page' %}";

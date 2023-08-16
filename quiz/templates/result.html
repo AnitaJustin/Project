@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +37,7 @@
         height :45px;
         cursor: pointer;
         font-weight: bold;
+        margin-top: 10px;
     }
     button:hover{
         background-color: #bfc2c4;
@@ -42,8 +45,8 @@
         font-weight: bold;
     }
     .img{
-        height: 400px;
-        width: 400px;
+        height: 200px;
+        width:250px;
     }
        
     </style>
@@ -53,12 +56,11 @@
     {% if score >= min_correct %}
         <h1>Congratulations..!</h1>
         <h2>Score : {{score}}/10</h2>
-        <!-- <img src="file:///C:/Users/user/Desktop/congratulations-baby.gif"> -->
         <div class="img">
-            {% load static %}
-        <img src="{% static 'quiz/images/congratulations.gif' %}" width="200" height="200"/>
+            
+            <img src="{% static 'images/congrats.gif' %}" width="200" height="200">
         </div>
-        <button onclick="nextlevel()"> Next123 level </button>
+        <button onclick="nextlevel()"> Next level </button>
         <script>
             function nextlevel(){
                 var levset='{{level}}'.split("-");
@@ -74,9 +76,9 @@
         </script>
     {% else %}
         <h1>OOPS Sorry!!!</h1>
-        <!-- <img src="C:\Users\HP\Downloads\Telegram Desktop\IMG20230211105834.jpg"> -->
-        {% load static %}
-        <source src="{% static 'home\trial.mp4' %}" type="video/mp4">
+        <div class="img">
+            <img src="{% static 'images/sad.gif' %}" width="200" height="200">
+        </div>
         <h2>Score : {{score}}/10</h2>
         <button onclick="backpage()"> <b>Back</b> </button>
         <script>
