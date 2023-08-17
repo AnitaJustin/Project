@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +22,17 @@
       justify-content: center;
       align-items: center;
       }
+      .img{
+        margin-top: 50px;
+      }
 </style>
   </head>
 <body>
-    <center><img  src="https://im.rediff.com/money/2014/aug/28logo1.jpg"></center>
-    <center><h1 style=" font-size: 5rem;"> TRIFLES </h1></center>
+  <div class="img">
+    <center><img  src="{% static 'images/trifle.jpeg' %}" height="400px" width="400px">
+    <h1 style=" font-size: 5rem; margin-top: -2rem;"> TRIFLES </h1></center>
+  </div>
+    
     <script>
         setTimeout(function() {
           window.location.href = "{% url 'next_page' %}";
